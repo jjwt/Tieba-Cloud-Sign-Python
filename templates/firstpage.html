@@ -1,0 +1,23 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        共绑定 {{ tbusers|length }}个贴吧用户。
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>贴吧用户名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id,tbuser_name,bduss,bduss_ok in tbusers %}
+            <tr>
+                <th scope="row"> {{ (pn_tbusers - 1) * num_per_tbusers + loop.index }}</th>
+                <td>{{ tbuser_name }}</td>
+                <td> <a href="/" tbuid="{{ id }}" onclick="deltbuser(this);">解绑</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

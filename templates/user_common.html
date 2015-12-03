@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ username }} -- {% endblock %}
+{% block head %}
+        <script src="/static/js/pagemain.js" charset="utf-8"></script>
+        <script src="/static/js/user_common.js" charset="utf-8"></script>
+{% endblock %}
+{% block body %}
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-10">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>{{ username }}</li>
+                <!--<li><a href="#">设置</a></li>-->
+                <li><a href="/logout">退出</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="module">
+                <div class="list-group">
+                    <a class="list-group-item active" href="#" onclick="ch_active(this);firstpage(this);return false;">首页</a>
+                    {% for id,tbuser_name,bduss,bduss_ok in tbusers %}
+                    <a id="tbuid{{ id }}" tbuid="{{ id }}"class="list-group-item" href="#" onclick="ch_active(this);tbuser(this);return false;">{{ tbuser_name }}</a>
+                    {% endfor %}
+                    <a id="add_tbuser_get" class="list-group-item" href="#" onclick="ch_active(this);addtbuser_get();return false;">绑定贴吧帐号</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div id="content">
+                {% include "firstpage.html" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

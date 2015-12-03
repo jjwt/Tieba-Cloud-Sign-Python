@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}[管理员]{{ username }} -- {% endblock %}
+{% block body %}
+<p>欢迎 [管理员] {{ username }} <a href="/logout">退出</a></p>
+<p> <a href="/?query=users">用户列表</a></p>
+{% if users is defined %}
+{% if max_pn == 0 %}
+<p>该表下无记录</p>
+{% else %}
+<table id="" border="1">
+    <tr>
+        <td>ID</td>
+        <td>用户名</td>
+        <td>角色</td>
+        <td>是否封禁</td>
+        <td>管理操作</td>
+    </tr>
+    {% for id, name, password, role, banned in users %}
+    <tr>
+        <td>{{ id }}</td>
+        <td>{{ name }}</td>
+        <td>{{ {0:'管理员',1:'普通用户'}[role] }}</td>
+        <td>{{ {0:'否',1:'是'}[banned] }}</td>
+        <td>
+            <a href="/manageuser?mod=del&username={{ name }}">删除</a>
+            <a href="/manageuser?mod=ban&username={{ name }}">封禁</a>
+            <a href="/manageuser?mod=unban&username={{ name }}">解禁</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+{% if pn > 1 %}
+    <a href="/?query=users&pn=1">首页</a>
+{% endif %}
+<a href="/?query=users&pn={{ pn }}">第{{ pn }}页</a>
+{% if pn < max_pn %}
+    <a href="/?query=users&pn={{ max_pn }}">尾页</a>
+{% endif %}
+</p>
+
+{% endif %}
+{% endif %}
+
+<p> <a href="/?query=tiebalist">贴吧列表</a></p>
+{% if tiebalist is defined %}
+{% if max_pn == 0 %}
+<p>该表下无记录</p>
+{% else %}
+<table id="" border="1">
+    <tr>
+        <td>ID</td>
+        <td>贴吧用户名</td>
+        <td>贴吧名</td>
+        <td>贴吧id</td>
+    </tr>
+    {% for id, tiebauser_name, tieba_name, tieba_id  in tiebalist %}
+    <tr>
+        <td>{{ id }}</td>
+        <td>{{ tiebauser_name }}</td>
+        <td>{{ tieba_name }}</td>
+        <td>{{ tieba_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+{% if pn > 1 %}
+    <a href="/?query=tiebalist"&pn=1">首页</a>
+{% endif %}
+<a href="/?query=tiebalist"&pn={{ pn }}">第{{ pn }}页</a>
+{% if pn < max_pn %}
+    <a href="/?query=tiebalist"&pn={{ max_pn }}">尾页</a>
+{% endif %}
+</p>
+
+{% endif %}
+{% endif %}
+
+<p> <a href="/?query=signrecords">签到记录</a></p>
+{% if signrecords is defined %}
+{% if max_pn == 0 %}
+<p>该表下无记录</p>
+{% else %}
+<table id="" border="1">
+    <tr>
+        <td>ID</td>
+        <td>签到日期</td>
+    </tr>
+    {% for id,sign_date in signrecords %}
+    <tr>
+        <td>{{ id }}</td>
+        <td>{{ sign_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+{% if pn > 1 %}
+    <a href="/?query=signrecords"&pn=1">首页</a>
+{% endif %}
+<a href="/?query=signrecords"&pn={{ pn }}">第{{ pn }}页</a>
+{% if pn < max_pn %}
+    <a href="/?query=signrecords"&pn={{ max_pn }}">尾页</a>
+{% endif %}
+</p>
+
+{% endif %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<ul class="nav nav-pills">
+    <li role="presentation" class="active"> <a href="#" tid="tblist" onclick="ch_tab(this);return false;">贴吧列表</a></li>
+    <li role="presentation"> <a href="#" tid="signrecords" onclick="ch_tab(this);return false;">签到记录</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="tblist">
+        {% include "tblist.html" %}
+    </div>
+    <div class="tab-pane" id="signrecords">
+        {% include "signrecords.html" %}
+    </div>
+</div>

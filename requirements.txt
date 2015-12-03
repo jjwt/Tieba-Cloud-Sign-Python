@@ -1,0 +1,18 @@
+# requirements
+# dependencies for Flask
+itsdangerous
+Jinja2
+Werkzeug
+Flask
+
+#used for deployment
+#put conf file to gunicorn.conf
+gunicorn
+
+#install supervisor with pacman and put conf file to
+#/etc/supervisor.d/projectname.ini
+#supervisor
+
+#install nginx with pacman and put conf file to
+#nginx.conf
+#nginx

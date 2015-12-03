@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}注册 -- {% endblock %}
+{% block head %}
+        <script src="/static/js/register.js" charset="utf-8"></script>
+{% endblock %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br>
+                <h4 class="panel-title">您需要注册才能正常使用本站。
+                    <small>已有帐号？请<a href="/login"> 登录</a></small>
+                </h4>
+            <br>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">注册--贴吧云签到</h3>
+                </div>
+                <div class="panel-body">
+                    {% if err is defined %}
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        {{ err }}
+                    </div>
+                    {% endif %}
+                    <form id="" action="" method="post">
+                        <div class="form-group has-success has-feedback">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" name="username" id="username" 
+                                {% if username is defined %}
+                                    value="{{ username }}"
+                                {% endif %}
+                                onblur="toggle_icon('#span_user',juggment_user(this.value));validate_submit()"
+                                placeholder="由4-8个非空白字符组成">
+                            <span id="span_user"></span>
+                        </div>
+                        <div class="form-group has-success has-feedback">
+                            <label for="password">密码</label>
+                            <input type="password" class="form-control" name="password" id="password" 
+                                {% if password is defined %}
+                                    value="{{ password }}"
+                                {% endif %}
+                                onblur="toggle_icon('#span_password',juggment_password(this.value));validate_submit()"
+                                placeholder="由6-16个字母和数字组成，字母和数字各至少有一个">
+                            <span id="span_password"></span>
+                        </div>
+                        <div class="form-group has-success has-feedback">
+                            <label for="passwordag">再次输入密码</label>
+                            <input type="password" class="form-control" name="passwordag" id="passwordag" 
+                                {% if passwordag is defined %}
+                                    value="{{ passwordag }}"
+                                {% endif %}
+                                onblur="toggle_icon('#span_passwordag',juggment_passwordag());validate_submit()"
+                                placeholder="确保与上面的密码相同">
+                            <span id="span_passwordag"></span>
+                        </div>
+                        <button id="register_submit" class="btn btn-primary" style="width:100%" type="submit" disabled>注册</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

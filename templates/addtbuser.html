@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">绑定贴吧账户</h3>
+    </div>
+    <div class="panel-body">
+        <div id="div_err_msg" class="alert alert-danger" role="alert" style="display:none;">
+            <span id="span_err_msg" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
+                                                                            ></span>
+            <span class="sr-only">Error:</span>
+        </div>
+        <form id="" action="" method="post">
+            <div class="form-group has-success has-feedback">
+                <label for="tbuser_name">用户名</label>
+                <input type="text" class="form-control" name="tbuser_name" id="tbuser_name">
+            </div>
+            <div class="form-group has-success has-feedback">
+                <label for="tbuser_pw">密码</label>
+                <input type="password" class="form-control" name="tbuser_pw" id="tbuser_pw">
+            </div>
+            <input class="btn btn-primary" type="button" value="获取验证码" style="width:100%" onclick="$(this).hide();$('#div_vcode').show();get_vcode();">
+            <div id="div_vcode" style="display:none;">
+                <p><img id="vcode_img" src="/static/img/300*60.png" width="200" height="50" onclick="get_vcode();" />
+                <input id="vcodestr" type="hidden" name="vcodestr">
+                <input id="verifycode" class="form-control" type="text" placeholder="输入上图中的验证码"></p>
+                <input class="btn btn-primary" type="button" value="绑定用户" style="width:100%" onclick="addtbuser_post();">
+            </div>
+        </form>
+        
+    </div>
+</div>

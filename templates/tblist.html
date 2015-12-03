@@ -1,0 +1,78 @@
+{% if count_tblist == 0 %}
+    <h3>该贴吧用户还未关注贴吧或贴吧列表暂未刷新。</h3>
+{% else %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            该贴吧用户共关注{{ count_tblist }}个贴吧
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>贴吧名</th>
+                    <th>贴吧ID</th>
+                    <th>今日是否签到</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tb_name, tb_id, signed in tblist %}
+                <tr>
+                    <th scope="row"> {{ (pn_tblist - 1) * num_per_tblist + loop.index }}</th>
+                    <td>{{ tb_name }}</td>
+                    <td>{{ tb_id }}</td>
+                    <td>{{ {0: "否", 1: "是"}[signed] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li 
+                {% if pn_tblist < 2 %}
+                class="disabled"
+                {% endif %}
+                >
+                    <a href="#" arial-label="First" pn="1" tbuid="{{ tbuser_id }}" onclick="tblist(this);return false;">
+                        <span class="glyphicon glyphicon-step-backward"
+                              arial-hidden="true"></span>
+                    </a>
+                </li>
+                <li 
+                {% if pn_tblist < 2 %}
+                class="disabled"
+                {% endif %}
+                >
+                <a href="#" arial-label="Previous" pn="{{ [pn_tblist-1, 1]|sort|last }}" tbuid="{{ tbuser_id }}" onclick="tblist(this);return false;">
+                        <span class="glyphicon glyphicon-backward"
+                              arial-hidden="true"></span>
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a href="#" pn="{{ pn_tblist }}" tbuid="{{ tbuser_id }}" onclick="tblist(this);return false;">{{ pn_tblist }}
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li 
+                {% if pn_tblist == max_pn_tblist %}
+                class="disabled"
+                {% endif %}
+                >
+                    <a href="#" arial-label="Next" pn="{{ [pn_tblist +1, max_pn_tblist]|sort|first }}" tbuid="{{ tbuser_id }}" onclick="tblist(this);return false;">
+                        <span class="glyphicon glyphicon-forward"
+                              arial-hidden="true"></span>
+                    </a>
+                </li>
+                <li 
+                {% if pn_tblist == max_pn_tblist %}
+                class="disabled"
+                {% endif %}
+                >
+                    <a href="#" arial-label="Last" pn="{{ max_pn_tblist }}" tbuid="{{ tbuser_id }}" onclick="tblist(this);return false;">
+                        <span class="glyphicon glyphicon-step-forward"
+                              arial-hidden="true"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+{% endif %}
