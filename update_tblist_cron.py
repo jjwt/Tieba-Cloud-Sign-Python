@@ -1,7 +1,7 @@
 #!/home/dyh/python_virtualenv/env_Tieba_Cloud_Sign_Python/bin/python
 # -*- coding: utf-8 -*-
 import sqlite3
-from main2 import _browser
+from main import _browser
 
 DB_NAME = 'tiebacloud.sqlite3'
 
